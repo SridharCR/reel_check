@@ -23,9 +23,9 @@ const LoadingProgress = ({ status }) => {
   }
 
   return (
-    <div className="flex items-center justify-center space-x-2 py-4">
-      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-current"></div>
-      <p className={`font-medium ${colorClass}`}>{message}</p>
+    <div className="flex items-center justify-center space-x-3 py-6 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-inner">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      <p className={`text-lg font-semibold ${colorClass}`}>{message}</p>
     </div>
   );
 };

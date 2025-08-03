@@ -189,11 +189,19 @@ def run_analysis(text: str):
     verdict_generator = AssistantAgent(
         name="Verdict_Generator",
         llm_config=llm_config,
-        system_message="""Your role is to analyze the claims and the evidence provided by the Knowledge_Seeker. For each claim, determine its veracity and assign a reliability score from 0-100. Then, compile a final report. 
-        Your final output must be a single JSON object with three keys: 
-        'claims' (an array of objects, each with 'claim', 'evidence_summary', and 'score'), 
-        'report' (a string summarizing the overall findings), and 
-        'overall_score' (a single float).
+        system_message=f"""Your role is to analyze the claims and the evidence provided by the Knowledge_Seeker. For each claim, determine its veracity and assign a reliability score from 0-100. Then, compile a final report. 
+        Your final output must be a single JSON object conforming to the following Pydantic schema:
+
+        class AgentClaimOutput(BaseModel):
+            claim: str # The factual claim extracted.
+            evidence_summary: str # A summary of the evidence found for the claim.
+            score: float # A reliability score for the claim (0-100).
+
+        class AgentReportOutput(BaseModel):
+            claims: List[AgentClaimOutput] # An array of analyzed claims.
+            report: str # A string summarizing the overall findings.
+            overall_score: float # A single float representing the overall reliability score.
+
         Provide ONLY the raw JSON output without any Markdown formatting or additional text.""",
     )
 

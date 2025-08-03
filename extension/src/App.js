@@ -9,7 +9,7 @@ const AppContent = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div className="w-80 h-96 p-4 flex flex-col bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-auto">
+    <div className="w-[40rem] h-[30rem] p-6 flex flex-col bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-auto rounded-lg shadow-xl">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-bold">ReelCheck</h1>
         <div className="flex items-center space-x-2">
@@ -17,7 +17,7 @@ const AppContent = () => {
             onClick={toggleTheme}
             className="py-1 px-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md text-sm"
           >
-            {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+            {theme === 'light' ? '☀️' : '🌙'}
           </button>
           {isAuthenticated && (
             <button

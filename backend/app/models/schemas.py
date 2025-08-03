@@ -89,3 +89,14 @@ class AnalysisResult(AnalysisResultBase):
 
     class Config:
         orm_mode = True
+
+# New Pydantic schemas for agent output
+class AgentClaimOutput(BaseModel):
+    claim: str # The factual claim extracted.
+    evidence_summary: str # A summary of the evidence found for the claim.
+    score: float # A reliability score for the claim (0-100).
+
+class AgentReportOutput(BaseModel):
+    claims: List[AgentClaimOutput] # An array of analyzed claims.
+    report: str # A string summarizing the overall findings.
+    overall_score: float # A single float representing the overall reliability score.

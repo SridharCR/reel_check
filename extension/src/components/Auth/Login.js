@@ -20,14 +20,14 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {error && <p className="text-red-500 text-sm">{error}</p>}
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
         <input
           type="input"
           id="email"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+          className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition duration-200 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -38,7 +38,7 @@ const Login = () => {
         <input
           type="password"
           id="password"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+          className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition duration-200 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -46,7 +46,7 @@ const Login = () => {
       </div>
       <button
         type="submit"
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200 ease-in-out"
       >
         Login
       </button>

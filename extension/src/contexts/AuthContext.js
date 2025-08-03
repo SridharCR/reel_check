@@ -33,6 +33,10 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+  const handleAuthError = () => {
+    logout();
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -42,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout, handleAuthError }}>
       {children}
     </AuthContext.Provider>
   );

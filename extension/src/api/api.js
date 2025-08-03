@@ -1,4 +1,22 @@
+export class AuthenticationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "AuthenticationError";
+  }
+}
+
 const API_BASE_URL = 'http://localhost:8000';
+
+const handleAuthResponse = async (response) => {
+  if (response.status === 401 || response.status === 403) {
+    throw new AuthenticationError(response.statusText || 'Authentication failed');
+  }
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'API request failed');
+  }
+  return response.json();
+};
 
 export const loginUser = async (username, password) => {
   try {
@@ -32,7 +50,6 @@ export const loginUser = async (username, password) => {
   }
 };
 
-// The rest of your code is correct and doesn't need changes
 export const signupUser = async (username, email, password) => {
   try {
     const response = await fetch(`${API_BASE_URL}/user`, {
@@ -63,11 +80,7 @@ export const analyzeContent = async (url, token) => {
       },
       body: JSON.stringify({ url }),
     });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.detail || 'Analysis failed');
-    }
-    return data;
+    return await handleAuthResponse(response);
   } catch (error) {
     console.error('Analysis error:', error);
     throw error;
@@ -82,11 +95,7 @@ export const getAnalysisStatus = async (taskId, token) => {
         'Authorization': `Bearer ${token}`,
       },
     });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.detail || 'Failed to get status');
-    }
-    return data;
+    return await handleAuthResponse(response);
   } catch (error) {
     console.error('Get status error:', error);
     throw error;
@@ -101,11 +110,7 @@ export const getAnalysisHistory = async (token) => {
         'Authorization': `Bearer ${token}`,
       },
     });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.detail || 'Failed to get history');
-    }
-    return data;
+    return await handleAuthResponse(response);
   } catch (error) {
     console.error('Get history error:', error);
     throw error;
@@ -120,11 +125,7 @@ export const getAnalysisDetails = async (analysisId, token) => {
         'Authorization': `Bearer ${token}`,
       },
     });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.detail || 'Failed to get analysis details');
-    }
-    return data;
+    return await handleAuthResponse(response);
   } catch (error) {
     console.error('Get analysis details error:', error);
     throw error;
