@@ -13,7 +13,6 @@ from moviepy import VideoFileClip
 
 
 # --- Configuration ---
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # --- Video Processing ---
 def get_video_metadata(url: str):
