@@ -19,32 +19,34 @@ services:
     container_name: redis_broker
     ports:
       - "6379:6379"
-#
-#  backend:
-#    build: ./backend
-#    container_name: backend_api
-#    ports:
-#      - "8000:8000"
-#    depends_on:
-#      - db
-#      - redis
-#    environment:
-#      DATABASE_URL: postgresql://user:password@db/reelcheck
-#      CELERY_BROKER_URL: redis://redis:6379/0
-#      CELERY_RESULT_BACKEND: redis://redis:6379/0
-#      API_KEY: ${API_KEY-your_secret_api_key}
-#
-#  worker:
-#    build: ./backend
-#    container_name: celery_worker
-#    command: celery -A celery_worker.celery_app worker --loglevel=info
-#    depends_on:
-#      - backend
-#      - redis
-#    environment:
-#      DATABASE_URL: postgresql://user:password@db/reelcheck
-#      CELERY_BROKER_URL: redis://redis:6379/0
-#      CELERY_RESULT_BACKEND: redis://redis:6.2/0
+
+  backend:
+    build: ./backend
+    container_name: backend_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: postgresql://user:password@db/reelcheck
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      REDIS_URL: redis://redis:6379/0
+
+  worker:
+    build: ./backend
+    container_name: celery_worker
+    command: uv run celery -A app.worker.celery_worker.celery_app worker --loglevel=info
+    depends_on:
+      - backend
+      - redis
+    environment:
+      DATABASE_URL: postgresql://user:password@db/reelcheck
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      REDIS_URL: redis://redis:6379/0
+      GEMINI_API_KEY: <your_api_key>
 
 volumes:
   postgres_data:

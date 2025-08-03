@@ -38,65 +38,6 @@ gemini = [
 ]
 
 [[package]]
-name = "agent-builder"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "ag2", extra = ["gemini"] },
-    { name = "arxiv" },
-    { name = "autogen" },
-    { name = "autogen-agentchat" },
-    { name = "celery" },
-    { name = "fastapi", extra = ["standard"] },
-    { name = "fastapi-limiter" },
-    { name = "google-api-python-client" },
-    { name = "google-genai" },
-    { name = "httpx" },
-    { name = "openai-whisper" },
-    { name = "opencv-python" },
-    { name = "passlib", extra = ["bcrypt"] },
-    { name = "psycopg2-binary" },
-    { name = "pytesseract" },
-    { name = "pytest" },
-    { name = "python-jose" },
-    { name = "python-multipart" },
-    { name = "redis" },
-    { name = "sqlalchemy" },
-    { name = "tesseract" },
-    { name = "uvicorn" },
-    { name = "vertexai" },
-    { name = "yt-dlp" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "ag2", extras = ["gemini"], specifier = ">=0.9.7" },
-    { name = "arxiv", specifier = ">=2.2.0" },
-    { name = "autogen", specifier = ">=0.9.7" },
-    { name = "autogen-agentchat", extras = ["autobuild", "gemini"], specifier = ">=0.7.1" },
-    { name = "celery", specifier = ">=5.5.3" },
-    { name = "fastapi", extras = ["standard"], specifier = ">=0.116.1" },
-    { name = "fastapi-limiter", extras = ["redis"], specifier = ">=0.1.6" },
-    { name = "google-api-python-client", specifier = ">=2.177.0" },
-    { name = "google-genai", specifier = ">=1.28.0" },
-    { name = "httpx", specifier = ">=0.28.1" },
-    { name = "openai-whisper", specifier = ">=20250625" },
-    { name = "opencv-python", specifier = ">=4.12.0.88" },
-    { name = "passlib", extras = ["bcrypt"], specifier = ">=1.7.4" },
-    { name = "psycopg2-binary", specifier = ">=2.9.10" },
-    { name = "pytesseract", specifier = ">=0.3.13" },
-    { name = "pytest", specifier = ">=8.4.1" },
-    { name = "python-jose", specifier = ">=3.5.0" },
-    { name = "python-multipart", specifier = ">=0.0.20" },
-    { name = "redis", specifier = ">=6.2.0" },
-    { name = "sqlalchemy", specifier = ">=2.0.42" },
-    { name = "tesseract", specifier = ">=0.1.3" },
-    { name = "uvicorn", specifier = ">=0.35.0" },
-    { name = "vertexai", specifier = ">=1.71.1" },
-    { name = "yt-dlp", specifier = ">=2025.7.21" },
-]
-
-[[package]]
 name = "amqp"
 version = "5.3.1"
 source = { registry = "https://pypi.org/simple" }
@@ -163,47 +104,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/5a/b0/1367933a8532ee6ff8d63537de4f1177af4bff9f3e829baf7331f595bb24/attrs-25.3.0.tar.gz", hash = "sha256:75d7cefc7fb576747b2c81b4442d4d4a1ce0900973527c011d1030fd3bf4af1b", size = 812032, upload-time = "2025-03-13T11:10:22.779Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/77/06/bb80f5f86020c4551da315d78b3ab75e8228f89f0162f2c3a819e407941a/attrs-25.3.0-py3-none-any.whl", hash = "sha256:427318ce031701fea540783410126f03899a97ffc6f61596ad581ac2e40e3bc3", size = 63815, upload-time = "2025-03-13T11:10:21.14Z" },
-]
-
-[[package]]
-name = "autogen"
-version = "0.9.7"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "ag2" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/32/b9/d6322787f8cf895a1869de2eb7b7a42863c3505b36c498c74ac7f732e661/autogen-0.9.7.tar.gz", hash = "sha256:ad8ab0d559cb366b1015a85c072c77e45201621a02cfe0921f420e8e207e8f73", size = 43435, upload-time = "2025-07-25T08:48:37.001Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a2/34/c00ec48e01bf343c27b44678a2ebd842586fca089f157ee50423b377e43c/autogen-0.9.7-py3-none-any.whl", hash = "sha256:b93197882a459380be744c700f9b0da20c0b7ddae073695d029be7fcdeb2f617", size = 13635, upload-time = "2025-07-25T08:48:35.83Z" },
-]
-
-[[package]]
-name = "autogen-agentchat"
-version = "0.7.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "autogen-core" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/f1/b6/f7dbc0ab89b1175f6215b96b219b77846dbbac0d2c0c72c0665afae69d78/autogen_agentchat-0.7.1.tar.gz", hash = "sha256:24527947bef428710a14ea599879f6cd5308670602558234c8a8670f60e196b2", size = 143039, upload-time = "2025-07-28T08:41:13.875Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/1e/60/cccd643af20ad5bd877a206854d85b7cbffd832928bb6b49fe0a51963365/autogen_agentchat-0.7.1-py3-none-any.whl", hash = "sha256:0eadf3a82974d6b41a6308b5625b578befb2d5bace82377e1dc930dde44f38bc", size = 117057, upload-time = "2025-07-28T08:41:12.291Z" },
-]
-
-[[package]]
-name = "autogen-core"
-version = "0.7.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "jsonref" },
-    { name = "opentelemetry-api" },
-    { name = "pillow" },
-    { name = "protobuf" },
-    { name = "pydantic" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/95/6e/32f766c96f6e54210f149703ae4aa224bd1e5cb18c5582b89a4cf245dcfe/autogen_core-0.7.1.tar.gz", hash = "sha256:b522321a6e776c104c8605310f17381a11068f3ab63ef711d1eaf887832b23b1", size = 99831, upload-time = "2025-07-28T08:41:11.102Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e1/42/36081c8d59290129cf2677589266fff5e3d16a7cfe4559f65f765d56d983/autogen_core-0.7.1-py3-none-any.whl", hash = "sha256:70336f8b85acb6d2a532f8d1417be66beecf08c86976ad97db6e55a932d29446", size = 101404, upload-time = "2025-07-28T08:41:09.52Z" },
 ]
 
 [[package]]
@@ -295,11 +195,11 @@ wheels = [
 
 [[package]]
 name = "certifi"
-version = "2025.7.14"
+version = "2025.8.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/b3/76/52c535bcebe74590f296d6c77c86dabf761c41980e1347a2422e4aa2ae41/certifi-2025.7.14.tar.gz", hash = "sha256:8ea99dbdfaaf2ba2f9bac77b9249ef62ec5218e7c2b2e903378ed5fccf765995", size = 163981, upload-time = "2025-07-14T03:29:28.449Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/dc/67/960ebe6bf230a96cda2e0abcf73af550ec4f090005363542f0765df162e0/certifi-2025.8.3.tar.gz", hash = "sha256:e564105f78ded564e3ae7c923924435e1daa7463faeab5bb932bc53ffae63407", size = 162386, upload-time = "2025-08-03T03:07:47.08Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4f/52/34c6cf5bb9285074dc3531c437b3919e825d976fde097a7a73f79e726d03/certifi-2025.7.14-py3-none-any.whl", hash = "sha256:6b31f564a415d79ee77df69d757bb49a5bb53bd9f756cbbe24394ffd6fc1f4b2", size = 162722, upload-time = "2025-07-14T03:29:26.863Z" },
+    { url = "https://files.pythonhosted.org/packages/e5/48/1549795ba7742c948d2ad169c1c8cdbae65bc450d6cd753d124b17c8cd32/certifi-2025.8.3-py3-none-any.whl", hash = "sha256:f6c12493cfb1b06ba2ff328595af9350c65d6644968e5d3a2ffd78699af217a5", size = 161216, upload-time = "2025-08-03T03:07:45.777Z" },
 ]
 
 [[package]]
@@ -339,14 +239,14 @@ wheels = [
 
 [[package]]
 name = "click"
-version = "8.2.2"
+version = "8.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e9/87/105111999772ec9730e3d4d910c723ea9763ece2ec441533a5cea1e87e3c/click-8.2.2.tar.gz", hash = "sha256:068616e6ef9705a07b6db727cb9c248f4eb9dae437a30239f56fa94b18b852ef", size = 263977, upload-time = "2025-08-02T02:23:41.102Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/60/6c/8ca2efa64cf75a977a0d7fac081354553ebe483345c734fb6b6515d96bbc/click-8.2.1.tar.gz", hash = "sha256:27c491cc05d968d271d5a1db13e3b5a184636d9d930f148c50b038f0d0646202", size = 286342, upload-time = "2025-05-20T23:19:49.832Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ec/85/e7297e34133ae1cfde3bffd30c24e1ef055248251baa877834e048687a28/click-8.2.2-py3-none-any.whl", hash = "sha256:52e1e9f5d3db8c85aa76968c7c67ed41ddbacb167f43201511c8fd61eb5ba2ca", size = 103900, upload-time = "2025-08-02T02:23:39.299Z" },
+    { url = "https://files.pythonhosted.org/packages/85/32/10bb5764d90a8eee674e9dc6f4db6a0ab47c8c4d0d83c27f7c39ac415a4d/click-8.2.1-py3-none-any.whl", hash = "sha256:61a3265b914e850b85317d0b3109c7f8cd35a670f963866005d6ef1d5175a12b", size = 102215, upload-time = "2025-05-20T23:19:47.796Z" },
 ]
 
 [[package]]
@@ -955,18 +855,6 @@ wheels = [
 ]
 
 [[package]]
-name = "importlib-metadata"
-version = "8.7.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "zipp" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/76/66/650a33bd90f786193e4de4b3ad86ea60b53c89b669a5c7be931fac31cdb0/importlib_metadata-8.7.0.tar.gz", hash = "sha256:d13b81ad223b890aa16c5471f2ac3056cf76c5f10f82d6f9292f0b415f389000", size = 56641, upload-time = "2025-04-27T15:29:01.736Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/20/b0/36bd937216ec521246249be3bf9855081de4c5e06a0c9b4219dbeda50373/importlib_metadata-8.7.0-py3-none-any.whl", hash = "sha256:e5dd1551894c77868a30651cef00984d50e1002d06942a7101d34870c5f02afd", size = 27656, upload-time = "2025-04-27T15:29:00.214Z" },
-]
-
-[[package]]
 name = "iniconfig"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -985,15 +873,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz", hash = "sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d", size = 245115, upload-time = "2025-03-05T20:05:02.478Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl", hash = "sha256:85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67", size = 134899, upload-time = "2025-03-05T20:05:00.369Z" },
-]
-
-[[package]]
-name = "jsonref"
-version = "1.1.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/aa/0d/c1f3277e90ccdb50d33ed5ba1ec5b3f0a242ed8c1b1a85d3afeb68464dca/jsonref-1.1.0.tar.gz", hash = "sha256:32fe8e1d85af0fdefbebce950af85590b22b60f9e95443176adbde4e1ecea552", size = 8814, upload-time = "2023-01-16T16:10:04.455Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/0c/ec/e1db9922bceb168197a558a2b8c03a7963f1afe93517ddd3cf99f202f996/jsonref-1.1.0-py3-none-any.whl", hash = "sha256:590dc7773df6c21cbf948b5dac07a72a251db28b0238ceecce0a2abfa8ec30a9", size = 9425, upload-time = "2023-01-16T16:10:02.255Z" },
 ]
 
 [[package]]
@@ -1365,19 +1244,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/68/1f/795e7f4aa2eacc59afa4fb61a2e35e510d06414dd5a802b51a012d691b37/opencv_python-4.12.0.88-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:092c16da4c5a163a818f120c22c5e4a2f96e0db4f24e659c701f1fe629a690f9", size = 67041680, upload-time = "2025-07-07T09:14:01.995Z" },
     { url = "https://files.pythonhosted.org/packages/02/96/213fea371d3cb2f1d537612a105792aa0a6659fb2665b22cad709a75bd94/opencv_python-4.12.0.88-cp37-abi3-win32.whl", hash = "sha256:ff554d3f725b39878ac6a2e1fa232ec509c36130927afc18a1719ebf4fbf4357", size = 30284131, upload-time = "2025-07-07T09:14:08.819Z" },
     { url = "https://files.pythonhosted.org/packages/fa/80/eb88edc2e2b11cd2dd2e56f1c80b5784d11d6e6b7f04a1145df64df40065/opencv_python-4.12.0.88-cp37-abi3-win_amd64.whl", hash = "sha256:d98edb20aa932fd8ebd276a72627dad9dc097695b3d435a4257557bbb49a79d2", size = 39000307, upload-time = "2025-07-07T09:14:16.641Z" },
-]
-
-[[package]]
-name = "opentelemetry-api"
-version = "1.36.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "importlib-metadata" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/27/d2/c782c88b8afbf961d6972428821c302bd1e9e7bc361352172f0ca31296e2/opentelemetry_api-1.36.0.tar.gz", hash = "sha256:9a72572b9c416d004d492cbc6e61962c0501eaf945ece9b5a0f56597d8348aa0", size = 64780, upload-time = "2025-07-29T15:12:06.02Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/bb/ee/6b08dde0a022c463b88f55ae81149584b125a42183407dc1045c486cc870/opentelemetry_api-1.36.0-py3-none-any.whl", hash = "sha256:02f20bcacf666e1333b6b1f04e647dc1d5111f86b8e510238fcc56d7762cda8c", size = 65564, upload-time = "2025-07-29T15:11:47.998Z" },
 ]
 
 [[package]]
@@ -1770,6 +1636,61 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ea/9a/0551e01ba52b944f97480721656578c8a7c46b51b99d66814f85fe3a4f3e/redis-6.2.0.tar.gz", hash = "sha256:e821f129b75dde6cb99dd35e5c76e8c49512a5a0d8dfdc560b2fbd44b85ca977", size = 4639129, upload-time = "2025-05-28T05:01:18.91Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/13/67/e60968d3b0e077495a8fee89cf3f2373db98e528288a48f1ee44967f6e8c/redis-6.2.0-py3-none-any.whl", hash = "sha256:c8ddf316ee0aab65f04a11229e94a64b2618451dab7a67cb2f77eb799d872d5e", size = 278659, upload-time = "2025-05-28T05:01:16.955Z" },
+]
+
+[[package]]
+name = "reel-check"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "ag2", extra = ["gemini"] },
+    { name = "arxiv" },
+    { name = "celery" },
+    { name = "fastapi", extra = ["standard"] },
+    { name = "fastapi-limiter" },
+    { name = "google-api-python-client" },
+    { name = "google-genai" },
+    { name = "httpx" },
+    { name = "openai-whisper" },
+    { name = "opencv-python" },
+    { name = "passlib", extra = ["bcrypt"] },
+    { name = "psycopg2-binary" },
+    { name = "pytesseract" },
+    { name = "pytest" },
+    { name = "python-jose" },
+    { name = "python-multipart" },
+    { name = "redis" },
+    { name = "sqlalchemy" },
+    { name = "tesseract" },
+    { name = "uvicorn" },
+    { name = "vertexai" },
+    { name = "yt-dlp" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "ag2", extras = ["gemini"], specifier = ">=0.9.7" },
+    { name = "arxiv", specifier = ">=2.2.0" },
+    { name = "celery", specifier = ">=5.5.3" },
+    { name = "fastapi", extras = ["standard"], specifier = ">=0.116.1" },
+    { name = "fastapi-limiter", specifier = ">=0.1.6" },
+    { name = "google-api-python-client", specifier = ">=2.177.0" },
+    { name = "google-genai", specifier = ">=1.28.0" },
+    { name = "httpx", specifier = ">=0.28.1" },
+    { name = "openai-whisper", specifier = ">=20250625" },
+    { name = "opencv-python", specifier = ">=4.12.0.88" },
+    { name = "passlib", extras = ["bcrypt"], specifier = ">=1.7.4" },
+    { name = "psycopg2-binary", specifier = ">=2.9.10" },
+    { name = "pytesseract", specifier = ">=0.3.13" },
+    { name = "pytest", specifier = ">=8.4.1" },
+    { name = "python-jose", specifier = ">=3.5.0" },
+    { name = "python-multipart", specifier = ">=0.0.20" },
+    { name = "redis", specifier = ">=6.2.0" },
+    { name = "sqlalchemy", specifier = ">=2.0.42" },
+    { name = "tesseract", specifier = ">=0.1.3" },
+    { name = "uvicorn", specifier = ">=0.35.0" },
+    { name = "vertexai", specifier = ">=1.71.1" },
+    { name = "yt-dlp", specifier = ">=2025.7.21" },
 ]
 
 [[package]]
@@ -2514,13 +2435,4 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/7e/3a/343f7a0024ddd4c30f150e8d8f57fd7b924846f97d99fc0dcd75ea8d2773/yt_dlp-2025.7.21.tar.gz", hash = "sha256:46fbb53eab1afbe184c45b4c17e9a6eba614be680e4c09de58b782629d0d7f43", size = 3050219, upload-time = "2025-07-21T23:59:03.826Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e8/2f/abe59a3204c749fed494849ea29176bcefa186ec8898def9e43f649ddbcf/yt_dlp-2025.7.21-py3-none-any.whl", hash = "sha256:d7aa2b53f9b2f35453346360f41811a0dad1e956e70b35a4ae95039d4d815d15", size = 3288681, upload-time = "2025-07-21T23:59:01.788Z" },
-]
-
-[[package]]
-name = "zipp"
-version = "3.23.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e3/02/0f2892c661036d50ede074e376733dca2ae7c6eb617489437771209d4180/zipp-3.23.0.tar.gz", hash = "sha256:a07157588a12518c9d4034df3fbbee09c814741a33ff63c05fa29d26a2404166", size = 25547, upload-time = "2025-06-08T17:06:39.4Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/2e/54/647ade08bf0db230bfea292f893923872fd20be6ac6f53b2b936ba839d75/zipp-3.23.0-py3-none-any.whl", hash = "sha256:071652d6115ed432f5ce1d34c336c0adfd6a884660d1e9712a256d3d3bd4b14e", size = 10276, upload-time = "2025-06-08T17:06:38.034Z" },
 ]

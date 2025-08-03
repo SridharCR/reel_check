@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { signupUser } from '../../api/api';
+import { signupUser, loginUser } from '../../api/api';
 import { AuthContext } from 'contexts/AuthContext';
 
 const Signup = () => {
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -13,8 +13,8 @@ const Signup = () => {
     e.preventDefault();
     setError(null);
     try {
-      const data = await signupUser(name, email, password);
-      login(data.access_token, { email: data.email }); // Assuming API returns access_token and user email
+      const data = await signupUser(username, email, password);
+      login(data.access_token, { username: data.username, email: data.email }); // Assuming API returns access_token and user email
     } catch (err) {
       setError(err.message || 'An error occurred during signup.');
     }
@@ -24,13 +24,13 @@ const Signup = () => {
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && <p className="text-red-500 text-sm">{error}</p>}
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+        <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
         <input
           type="text"
-          id="name"
+          id="username"
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
       </div>

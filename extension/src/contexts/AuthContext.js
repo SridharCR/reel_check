@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Check for token in chrome.storage.local on component mount
     chrome.storage.local.get(['token', 'user'], (result) => {
-      if (result.token && result.user) {
+      if (result.token && result.user && result.user.username) {
         setIsAuthenticated(true);
         setUser(result.user);
       }

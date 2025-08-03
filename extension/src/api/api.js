@@ -33,14 +33,14 @@ export const loginUser = async (username, password) => {
 };
 
 // The rest of your code is correct and doesn't need changes
-export const signupUser = async (name, email, password) => {
+export const signupUser = async (username, email, password) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/signup`, {
+    const response = await fetch(`${API_BASE_URL}/user`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ username, email, password }),
     });
     const data = await response.json();
     if (!response.ok) {
