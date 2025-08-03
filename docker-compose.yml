@@ -1,0 +1,50 @@
+
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: reelcheck
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:6.2
+    container_name: redis_broker
+    ports:
+      - "6379:6379"
+#
+#  backend:
+#    build: ./backend
+#    container_name: backend_api
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - db
+#      - redis
+#    environment:
+#      DATABASE_URL: postgresql://user:password@db/reelcheck
+#      CELERY_BROKER_URL: redis://redis:6379/0
+#      CELERY_RESULT_BACKEND: redis://redis:6379/0
+#      API_KEY: ${API_KEY-your_secret_api_key}
+#
+#  worker:
+#    build: ./backend
+#    container_name: celery_worker
+#    command: celery -A celery_worker.celery_app worker --loglevel=info
+#    depends_on:
+#      - backend
+#      - redis
+#    environment:
+#      DATABASE_URL: postgresql://user:password@db/reelcheck
+#      CELERY_BROKER_URL: redis://redis:6379/0
+#      CELERY_RESULT_BACKEND: redis://redis:6.2/0
+
+volumes:
+  postgres_data:
