@@ -70,14 +70,27 @@ export const signupUser = async (username, email, password) => {
   }
 };
 
-export const analyzeContent = async (url, token) => {
+const getAuthHeaders = async () => {
+  return new Promise((resolve) => {
+    chrome.storage.local.get(['token'], (result) => {
+      if (result.token) {
+        resolve({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${result.token}`,
+        });
+      } else {
+        resolve({ 'Content-Type': 'application/json' });
+      }
+    });
+  });
+};
+
+export const analyzeContent = async (url) => {
   try {
+    const headers = await getAuthHeaders();
     const response = await fetch(`${API_BASE_URL}/analyze`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
+      headers: headers,
       body: JSON.stringify({ url }),
     });
     return await handleAuthResponse(response);
@@ -87,13 +100,12 @@ export const analyzeContent = async (url, token) => {
   }
 };
 
-export const getAnalysisStatus = async (taskId, token) => {
+export const getAnalysisStatus = async (taskId) => {
   try {
+    const headers = await getAuthHeaders();
     const response = await fetch(`${API_BASE_URL}/status/${taskId}`, {
       method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
+      headers: headers,
     });
     return await handleAuthResponse(response);
   } catch (error) {
@@ -102,13 +114,12 @@ export const getAnalysisStatus = async (taskId, token) => {
   }
 };
 
-export const getAnalysisHistory = async (token) => {
+export const getAnalysisHistory = async (skip = 0, limit = 5) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/history`, {
+    const headers = await getAuthHeaders();
+    const response = await fetch(`${API_BASE_URL}/history?skip=${skip}&limit=${limit}`, {
       method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
+      headers: headers,
     });
     return await handleAuthResponse(response);
   } catch (error) {
@@ -117,13 +128,12 @@ export const getAnalysisHistory = async (token) => {
   }
 };
 
-export const getAnalysisDetails = async (analysisId, token) => {
+export const getAnalysisDetails = async (analysisId) => {
   try {
+    const headers = await getAuthHeaders();
     const response = await fetch(`${API_BASE_URL}/analysis/${analysisId}`, {
       method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
+      headers: headers,
     });
     return await handleAuthResponse(response);
   } catch (error) {

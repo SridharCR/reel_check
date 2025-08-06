@@ -87,16 +87,24 @@ async def get_status(task_id: str, db: Session = Depends(database.get_db), curre
             raise HTTPException(status_code=403, detail="Not authorized to access this task")
     raise HTTPException(status_code=404, detail="Analysis not found")
 
-@app.get("/history", response_model=List[schemas.AnalysisResult])
-async def get_history(db: Session = Depends(database.get_db), current_user: User = Depends(oauth2.get_current_user)):
-    history = db.query(AnalysisResult).filter(AnalysisResult.owner_id == current_user.id).all()
+@app.get("/history", response_model=schemas.PaginatedAnalysisResults)
+async def get_history(
+    skip: int = 0,
+    limit: int = 5,
+    db: Session = Depends(database.get_db),
+    current_user: User = Depends(oauth2.get_current_user)
+):
+    query = db.query(AnalysisResult).filter(AnalysisResult.owner_id == current_user.id).order_by(AnalysisResult.created_at.desc())
+    total_analyses = query.count()
+    history = query.offset(skip).limit(limit).all()
+
     final = []
     if history:
         for result in history:
             if result.status == "completed":
                 result.factual_report_json = json.loads(result.factual_report_json)
             final.append(result)
-    return final
+    return {"total": total_analyses, "analyses": final}
 
 @app.get("/analysis/{analysis_id}", response_model=schemas.AnalysisResult)
 async def get_analysis_details(analysis_id: int, db: Session = Depends(database.get_db), current_user: User = Depends(oauth2.get_current_user)):

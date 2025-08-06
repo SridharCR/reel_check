@@ -100,3 +100,7 @@ class AgentReportOutput(BaseModel):
     claims: List[AgentClaimOutput] # An array of analyzed claims.
     report: str # A string summarizing the overall findings.
     overall_score: float # A single float representing the overall reliability score.
+
+class PaginatedAnalysisResults(BaseModel):
+    total: int
+    analyses: List[AnalysisResult]

@@ -9,14 +9,35 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for token in chrome.storage.local on component mount
-    chrome.storage.local.get(['token', 'user'], (result) => {
-      if (result.token && result.user && result.user.username) {
-        setIsAuthenticated(true);
-        setUser(result.user);
+    const checkAuth = async () => {
+      console.log("AuthContext: Starting authentication check...");
+      try {
+        const result = await new Promise(resolve => {
+          chrome.storage.local.get(['token', 'user'], resolve);
+        });
+
+        console.log("AuthContext: chrome.storage.local.get result:", result);
+
+        if (result.token && result.user && result.user.email) {
+          console.log("AuthContext: Token and user found. Setting isAuthenticated to true.");
+          setIsAuthenticated(true);
+          setUser(result.user);
+        } else {
+          console.log("AuthContext: Token or user not found. Setting isAuthenticated to false.");
+          setIsAuthenticated(false);
+          setUser(null);
+        }
+      } catch (error) {
+        console.error("AuthContext: Error checking local storage for auth:", error);
+        setIsAuthenticated(false);
+        setUser(null);
+      } finally {
+        console.log("AuthContext: Setting loading to false.");
+        setLoading(false);
       }
-      setLoading(false);
-    });
+    };
+
+    checkAuth();
   }, []);
 
   const login = (token, userData) => {

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AuthForm from './components/Auth/AuthForm';
-import Dashboard from './components/Dashboard';
+import { Dashboard } from './components/Dashboard';
 import { AuthContext, AuthProvider } from 'contexts/AuthContext';
 import { ThemeContext, ThemeProvider } from 'contexts/ThemeContext';
 
