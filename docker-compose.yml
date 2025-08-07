@@ -46,7 +46,8 @@ services:
       CELERY_BROKER_URL: redis://redis:6379/0
       CELERY_RESULT_BACKEND: redis://redis:6379/0
       REDIS_URL: redis://redis:6379/0
-      GEMINI_API_KEY: AIzaSyBxP3fn3e4zfO356WxBMWVIF-aohfmbqDs
+    env_file:
+      - .env
 
 volumes:
   postgres_data:
