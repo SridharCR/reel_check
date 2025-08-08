@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const LoadingProgress = ({ status }) => {
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const queuedMessages = [
+    "Initializing AI agents...",
+    "Extracting video data...",
+    "Analyzing audio tracks...",
+    "Cross-referencing facts...",
+    "Generating report..."
+  ];
+
   let message = '';
   let colorClass = '';
 
+  useEffect(() => {
+    let interval;
+    if (status === 'queued') {
+      interval = setInterval(() => {
+        setCurrentMessageIndex((prevIndex) => {
+          if (prevIndex < queuedMessages.length - 1) {
+            return prevIndex + 1;
+          } else {
+            clearInterval(interval);
+            return prevIndex;
+          }
+        });
+      }, 7000); // Change message every 7 seconds
+    } else {
+      setCurrentMessageIndex(0); // Reset when status changes
+    }
+    return () => clearInterval(interval);
+  }, [status]);
+
   switch (status) {
     case 'queued':
-      message = 'Analysis Queued...';
+      message = queuedMessages[currentMessageIndex];
       colorClass = 'text-yellow-600';
       break;
     case 'processing':

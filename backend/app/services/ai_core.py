@@ -11,6 +11,8 @@ from datetime import datetime
 from google.genai.types import GoogleSearch
 from moviepy import VideoFileClip
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 # --- Configuration ---
 
@@ -214,13 +216,32 @@ def run_analysis(text: str):
     )
 
     # Custom termination function
-    def is_termination_msg(content):
-        try:
-            # Try to parse as JSON
-            json.loads(content)
-            return True
-        except:
+    def is_termination_msg(message: dict) -> bool:
+        """Checks if the message indicates the end of the conversation."""
+        content = message.get("content", "")
+        if not content:
             return False
+
+        # The conversation should terminate when the Verdict_Generator produces its final report.
+        # The report is a JSON object with specific keys. We check for the presence of these keys.
+        # We also need to handle cases where the JSON is embedded in a markdown block.
+        
+        # Extract JSON from markdown if present
+        if "```json" in content:
+            content_match = re.search(r"```json\s*(.*?)\s*```", content, re.DOTALL)
+            if content_match:
+                content = content_match.group(1)
+
+        try:
+            data = json.loads(content)
+            # Check for the structure of the final report
+            if isinstance(data, dict) and all(k in data for k in ['claims', 'report', 'overall_score']):
+                return True
+        except (json.JSONDecodeError, TypeError):
+            # Not a valid JSON or not a dictionary
+            pass
+            
+        return False
 
     manager = autogen.GroupChatManager(
         groupchat=groupchat,

@@ -117,7 +117,7 @@ export const Dashboard = () => {
 
   return (
     <div className="p-6 space-y-6">
-      <h2 className="text-2xl font-extrabold mb-6 text-gray-900 dark:text-gray-100">Welcome, {user?.email || 'User'}!</h2>
+      
       {!isAnalyzing && !analysisReport && (
         <form onSubmit={handleAnalyze} className="space-y-4 mb-6">
           <div>
@@ -171,7 +171,26 @@ export const Dashboard = () => {
             </svg>
           </button>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{analysisReport.report}</p>
-          <p className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Overall Score: <span className="text-blue-600 dark:text-blue-400">{analysisReport.factual_report_json.overall_score}</span></p>
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+              Overall Score: <span className="text-blue-600 dark:text-blue-400">{analysisReport.reliability_score}</span>
+            </p>
+            {analysisReport.reliability_score >= 70 ? (
+              <div className="flex items-center">
+                <svg className="h-8 w-8 text-green-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-lg font-bold text-green-600">APPROVED</span>
+              </div>
+            ) : (
+              <div className="flex items-center">
+                <svg className="h-8 w-8 text-red-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-lg font-bold text-red-600">REJECTED</span>
+              </div>
+            )}
+          </div>
           <h4 className="text-lg font-bold mb-3 text-gray-900 dark:text-gray-100">Claims:</h4>
           {analysisReport.claims.map((claim, index) => {
             const scoreColorClass =
@@ -183,7 +202,7 @@ export const Dashboard = () => {
 
             return (
               <div key={index} className="mb-4 p-5 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md bg-white dark:bg-gray-900">
-                <p className="font-semibold text-gray-900 dark:text-gray-100 mb-2 text-base">Claim: {claim.claim}</p>
+                <p className="font-semibold text-gray-900 dark:text-gray-100 mb-2 text-base">Claim: {claim.claim_text}</p>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-2 leading-snug">
                   <span className="font-medium">Evidence:</span> {claim.evidence_summary}
                 </p>
@@ -201,7 +220,7 @@ export const Dashboard = () => {
         </div>
       )}
 
-      <History handleViewDetails={handleViewDetails} />
+      {!analysisReport && <History handleViewDetails={handleViewDetails} />}
     </div>
   );
 };

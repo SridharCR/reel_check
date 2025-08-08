@@ -64,7 +64,7 @@ const History = ({ handleViewDetails }) => {
             {history.map((item) => (
               <li key={item.id} className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg shadow-sm flex justify-between items-center border border-gray-200 dark:border-gray-700 transition duration-200 ease-in-out hover:shadow-md">
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-gray-100">URL: {item.video.url}</p>
+                  <p className="font-medium text-gray-900 dark:text-gray-100">Video: {item.video.title}</p>
                   <p className={`text-sm ${item.status === 'completed' ? 'text-green-600' : 'text-yellow-600'}`}>Status: {item.status}</p>
                 </div>
                 <button
